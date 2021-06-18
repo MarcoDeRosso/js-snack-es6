@@ -1,63 +1,55 @@
-/* Snack 3
-Abbiamo sempre un array di squadre, con:
-nome
-punti fatti
-falli subiti
-Stampare in html (in forma tabellare!!! :allegria::allegria:)
-i dati relativi alle squadre evidenziando in giallo la riga corrispondente alla squadra con più falli subiti.*/
 let tableHTML = document.querySelector('.table-container');
-const getRandomNumber = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 
 let teamsArray = [{
-        nome: "inter",
-        punti_fatti: 0,
-        falli: 0
+        nome: "Inter",
+        punti_fatti: 10,
+        falli: 30
     },
     {
-        nome: "milan",
-        punti_fatti: 0,
-        falli: 0
+        nome: "Milan",
+        punti_fatti: 20,
+        falli: 50
     },
     {
-        nome: "juventus",
-        punti_fatti: 0,
-        falli: 0
+        nome: "Juventus",
+        punti_fatti: 80,
+        falli: 20
     }
 ];
 
 
 
 let numeroMaggioreFalli = 0;
-let teamMaggiorefalli;
-let flag = false;
+let teamMaggioreFalli;
+
 for (let y = 0; y < teamsArray.length; y++) {
-    teamsArray[y].punti_fatti = getRandomNumber(0, 100);
-    teamsArray[y].falli = getRandomNumber(0, 50);
-    const { nome, punti_fatti, falli } = teamsArray[y];
-
-
-    tableHTML.innerHTML += `
-    <ul>
-    <li>${nome}</li>
-    <li>${punti_fatti}</li>
-    <li>${falli}</li>
-    </ul>
-    `
+    const { falli } = teamsArray[y];
 
     if (falli > numeroMaggioreFalli) {
         numeroMaggioreFalli = falli;
-        teamMaggiorefalli = teamsArray[y];
+        teamMaggioreFalli = teamsArray[y];
     }
 
 }
-console.log(`numero maggiore falli ${numeroMaggioreFalli}`)
 
-tableHTML.innerHTML += `
+console.log(numeroMaggioreFalli)
+
+for (let y = 0; y < teamsArray.length; y++) {
+
+    const { nome, punti_fatti, falli } = teamsArray[y];
+
+    tableHTML.innerHTML += `
 <ul>
-<li style="background-color:yellow">${numeroMaggioreFalli}</li>
+<li>${nome}</li>
+<li>${punti_fatti}</li>
+<li>${falli}</li>
 </ul>
 `
+}
 
+for (let y = 0; y < teamsArray.length; y++) {
 
-
-console.log(teamsArray);
+    if (teamsArray[y] === teamMaggioreFalli) {
+        document.getElementsByTagName("ul")[y + 1].style.backgroundColor = "yellow";
+    }
+}

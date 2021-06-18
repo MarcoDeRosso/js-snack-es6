@@ -19,6 +19,7 @@
 .table-container ul li {
     border: 1px #ccc solid;
     flex-basis: calc(100% /3);
+    text-align: center;
 }
 
 .table-container ul li:last-child {
